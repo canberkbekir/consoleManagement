@@ -1,8 +1,8 @@
 package com.main.consolemanagement.service.role;
 
+import com.main.consolemanagement.model.Rank;
 import com.main.consolemanagement.model.Role;
 import com.main.consolemanagement.repository.role.RoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +20,17 @@ public class RoleServiceImp implements RoleService{
     @Override
     public Role getRoleById(UUID id) {
 
-        return roleRepository.getById(id);
+        return roleRepository.getReferenceById(id);
     }
 
     @Override
     public Role getRoleByName(String name) {
-        return null;
+        return roleRepository.findFirstByName(name);
+    }
+
+    @Override
+    public List<Role> getRolesByRank(Rank rank) {
+        return roleRepository.getRolesByRank(rank);
     }
 
     @Override
@@ -40,17 +45,18 @@ public class RoleServiceImp implements RoleService{
 
     @Override
     public void deleteRole(Role role) {
-
+        roleRepository.delete(role);
     }
 
     @Override
     public void deleteRoleById(UUID id) {
-
+        roleRepository.deleteById(id);
     }
 
     @Override
     public void deleteRoleByName(String name) {
-
+        Role role = roleRepository.findFirstByName(name);
+        roleRepository.delete(role);
     }
 
     @Override

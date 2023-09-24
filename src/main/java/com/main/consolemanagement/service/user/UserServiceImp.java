@@ -16,12 +16,12 @@ public class UserServiceImp implements UserService{
     }
     @Override
     public User getUserById(UUID id) {
-        return userRepository.getById(id);
+        return userRepository.getReferenceById(id);
     }
 
     @Override
     public User getUserByUsername(String username) {
-        return null;
+        return userRepository.findFirstByUsername(username);
     }
 
     @Override
@@ -36,17 +36,18 @@ public class UserServiceImp implements UserService{
 
     @Override
     public void deleteUser(User user) {
-
+        userRepository.delete(user);
     }
 
     @Override
     public void deleteUserById(UUID id) {
-
+        userRepository.deleteById(id);
     }
 
     @Override
     public void deleteUserByUsername(String username) {
-
+        User user = userRepository.findFirstByUsername(username);
+        userRepository.delete(user);
     }
 
     @Override

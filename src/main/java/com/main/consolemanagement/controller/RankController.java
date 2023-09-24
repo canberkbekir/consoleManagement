@@ -19,9 +19,18 @@ public class RankController {
     public Rank createRank(@RequestBody Rank rank) {
         return rankService.createRank(rank);
     }
-
     @GetMapping("getAll")
     public List<Rank> getRank() {
         return rankService.getAllRanks();
+    }
+
+    @GetMapping("getByName/{name}")
+    public Rank getRankByName(@PathVariable String name) {
+        return rankService.getRankByName(name);
+    }
+
+    @GetMapping("getByRank/{rank}")
+    public Rank getRankByRank(@PathVariable int rank) {
+        return rankService.getRankByRank(rank);
     }
 }

@@ -1,6 +1,7 @@
 package com.main.consolemanagement.service.rank;
 
 import com.main.consolemanagement.model.Rank;
+import com.main.consolemanagement.model.Role;
 import com.main.consolemanagement.repository.rank.RankRepository;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,21 @@ public class RankServiceImp implements RankService {
 
     @Override
     public Rank getRankById(UUID id) {
-        return rankRepository.getById(id);
+        return rankRepository.getReferenceById(id);
+    }
+
+    @Override
+    public Rank getRankByName(String name) {
+        return rankRepository.findFirstByName(name);
+    }
+
+    @Override
+    public Rank getRankByRole(Role role) {
+        return null;
+    }
+
+    @Override
+    public Rank getRankByRank(int rank) {
+        return rankRepository.findFirstByRank(rank);
     }
 }
