@@ -20,9 +20,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private Timestamp created_at;
-
     private Timestamp updated_at;
     private Timestamp deleted_at;
     private Timestamp last_seen;
@@ -30,8 +28,8 @@ public class User {
     @Column(nullable = false)
     private boolean active = true;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
     private Role role;
 
 

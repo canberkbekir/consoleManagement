@@ -11,8 +11,11 @@ import java.util.UUID;
 @Service
 public class RoleServiceImp implements RoleService{
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+
+    public RoleServiceImp(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public Role getRoleById(UUID id) {

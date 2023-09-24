@@ -18,7 +18,7 @@ public class RoleController {
     }
 
     @PostMapping(value = "create",consumes = "application/json",produces = "application/json")
-    public Role saveRole(@RequestBody Role role){
+    public Role createRole(@RequestBody Role role){
         return roleService.createRole(role);
     }
 

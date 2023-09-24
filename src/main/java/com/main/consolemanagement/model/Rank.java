@@ -5,10 +5,10 @@ import lombok.Data;
 
 import java.util.UUID;
 
-@Entity
 @Data
-@Table(name = "roles")
-public class Role {
+@Entity
+@Table(name = "ranks")
+public class Rank {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -16,13 +16,6 @@ public class Role {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = true)
-    private String description;
-
-    @Column(nullable = false)
-    private boolean active = true;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rank_id")
-    private Rank rank;
+    @Column(unique = true)
+    private int rank;
 }
