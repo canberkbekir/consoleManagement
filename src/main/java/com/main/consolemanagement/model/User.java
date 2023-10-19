@@ -1,18 +1,18 @@
 package com.main.consolemanagement.model;
 
+import com.main.consolemanagement.model.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class User extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -20,9 +20,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private Timestamp created_at;
-    private Timestamp updated_at;
-    private Timestamp deleted_at;
     private Timestamp last_seen;
 
     @Column(nullable = false)

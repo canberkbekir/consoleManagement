@@ -7,20 +7,20 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.mapping.Set;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@Table(name = "roles")
-public class Role extends BaseEntity {
+@Table(name = "permissions")
+public class Permission extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;
-    private String description;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rank_id")
-    private Rank rank;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    private List<Permission> permissions;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "role_permissions",
+            joinColumns = @JoinColumn(name = "permission_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
 }
